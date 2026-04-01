@@ -1,0 +1,441 @@
+/* ═══════════════════════════════════════════════
+   Login.css — Cogie split-panel login design
+   ═══════════════════════════════════════════════ */
+
+/* ── Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── Reset / Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Layout Shell ── */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.login-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1300px;
+  min-height: 800px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.55);
+}
+
+/* ═══════════════════════════════════════════════
+   LEFT PANEL — vivid image + quote
+   ═══════════════════════════════════════════════ */
+.login-panel--left {
+  flex: 0 0 48%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 36px 40px;
+
+  /* Vivid fluid gradient that mimics the screenshot */
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%,  #e040fb 0%,  transparent 55%),
+    radial-gradient(ellipse 70% 70% at 80% 0%,   #f06292 0%,  transparent 50%),
+    radial-gradient(ellipse 60% 80% at 50% 50%,  #7c4dff 0%,  transparent 60%),
+    radial-gradient(ellipse 80% 60% at 10% 80%,  #1a237e 0%,  transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 90%,  #0288d1 0%,  transparent 55%),
+    #0a0118;
+  border-radius: 16px;
+  margin: 8px;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* Subtle noise grain overlay */
+.login-panel--left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ── Quote tag ── */
+.panel-quote-tag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  position: relative;
+  z-index: 1;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.panel-quote-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+/* ── Bottom text block ── */
+.panel-bottom {
+  position: relative;
+  z-index: 1;
+  text-align: left;
+}
+
+.panel-heading {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1.08;
+  font-weight: 400;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+
+.panel-subtext {
+  font-size: 14px;
+  line-height: 1.65;
+  opacity: 0.75;
+  max-width: 340px;
+}
+
+/* ═══════════════════════════════════════════════
+   RIGHT PANEL — white form area
+   ═══════════════════════════════════════════════ */
+.login-panel--right {
+  flex: 1;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 36px 52px 40px;
+  gap: 0;
+}
+
+/* ── Brand ── */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: auto;
+  padding-bottom: 32px;
+}
+
+.brand-icon {
+  width: 26px;
+  height: 26px;
+  color: #111;
+}
+
+.brand-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  letter-spacing: -0.01em;
+}
+
+/* ── Form wrapper centres content vertically ── */
+.login-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  flex: 1;
+  justify-content: center;
+}
+
+/* ── Heading group ── */
+.login-heading-group {
+  text-align: center;
+}
+
+.login-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 400;
+  color: #0d0d0d;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+/* ── Form ── */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Error ── */
+.error-message {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+
+.error-text {
+  font-size: 13.5px;
+  color: #dc2626;
+}
+
+/* ── Form fields ── */
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.form-label {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #374151;
+  letter-spacing: 0.005em;
+  text-align: left;
+}
+
+/* ── Inputs ── */
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form-input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  background: #f3f4f6;
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #111;
+  outline: none;
+  transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
+}
+
+.form-input:focus {
+  background: #fff;
+  border-color: #111;
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.07);
+}
+
+.form-input:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* password field has right padding for toggle */
+.form-input-password {
+  padding-right: 44px;
+}
+
+/* ── Password toggle ── */
+.input-action-wrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding-right: 12px;
+}
+
+.password-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s;
+}
+
+.password-toggle:hover {
+  color: #374151;
+}
+
+.password-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Remember me + Forgot password row ── */
+.form-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.remember-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: #374151;
+  cursor: pointer;
+  user-select: none;
+}
+
+.remember-checkbox {
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+  accent-color: #111;
+  cursor: pointer;
+}
+
+.forgot-link {
+  background: none;
+  border: none;
+  font-size: 13.5px;
+  color: #111;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.forgot-link:hover {
+  opacity: 0.65;
+}
+
+/* ── Actions ── */
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Primary Sign In button */
+.login-button {
+  width: 100%;
+  height: 50px;
+  background: #111111;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  letter-spacing: 0.01em;
+  transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+}
+
+.login-button:hover:not(:disabled) {
+  background: #2a2a2a;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+
+.login-button:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Spinner animation */
+.button-spinner {
+  width: 18px;
+  height: 18px;
+  animation: spin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .login-wrapper {
+    flex-direction: column;
+    min-height: unset;
+    border-radius: 16px;
+  }
+
+  .login-panel--left {
+    flex: none;
+    min-height: 220px;
+    margin: 0;
+    border-radius: 16px 16px 0 0;
+    padding: 28px 28px 32px;
+  }
+
+  .panel-heading {
+    font-size: 32px;
+  }
+
+  .login-panel--right {
+    padding: 32px 28px 36px;
+  }
+
+  .brand {
+    padding-bottom: 24px;
+  }
+
+  .login-footer {
+    padding-top: 20px;
+  }
+}
+
+/* ── Powered by footer ── */
+.login-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 12px;
+  color: #9ca3af;
+  opacity: 0.7;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  pointer-events: none;
+  z-index: 10;
+}

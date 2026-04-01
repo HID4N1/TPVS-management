@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
-import Sidebar from "../components/layout/Sidebar";
-import { agentSidebar } from "../components/layout/SidebarAgentConfig";
+import Sidebar from "../components/layout/Sidebar/Sidebar";
+import { agentSidebar } from "../components/layout/Sidebar/SidebarAgentConfig";
 
 export default function AgentLayout({ children }) {
   return (

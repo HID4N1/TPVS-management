@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
+import RedirectByRole from "../pages/redirect";
 
 // layouts
 import AdminLayout from "../layouts/AdminLayout";
@@ -24,7 +25,11 @@ import LoginPage from "../pages/auth/Login";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/login" replace />,
+    element: (
+      <ProtectedRoute>
+        <RedirectByRole />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/login",
@@ -39,14 +44,14 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      { index: true, element: <AdminDashboard /> },
-      { path: "agents", element: <Agents /> },
-      { path: "analytics", element: <Analytics /> },
-      { path: "map", element: <Map /> },
-      { path: "reports", element: <Reports /> },
-      { path: "stock", element: <Stock /> },
-      { path: "tpvs", element: <Tpvs /> },
-      { path: "transactions", element: <Transactions /> },
+      { index: true, element: <AdminDashboard />, handle: {title: "Dashboard"} },
+      { path: "agents", element: <Agents />, handle: {title: "Agents List"} },
+      { path: "analytics", element: <Analytics />, handle: {title: "Analytics"} },
+      { path: "map", element: <Map />, handle: {title: "Map"} },
+      { path: "reports", element: <Reports />, handle: {title: "Reporting"} },
+      { path: "stock", element: <Stock />, handle: {title: "Stock"} },
+      { path: "tpvs", element: <Tpvs />, handle: {title: "Machine TPVS"} },
+      { path: "transactions", element: <Transactions />, handle: {title: "Transactions"} },
     ],
   },
 

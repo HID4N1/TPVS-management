@@ -11,7 +11,7 @@ import {
   Divider,
 } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../../auth/useAuth";
+import { useAuth } from "../../../auth/useAuth";
 
 const drawerWidth = 240;
 
@@ -26,30 +26,52 @@ export default function Sidebar({ menu, mobileOpen, onClose }) {
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        bgcolor: 'white',
       }}
     >
       {/* 🔹 HEADER */}
-      <Box sx={{ p: 2 }}>
-        <Typography variant="body2" fontWeight={500}>
-          {/* logo will be here header will have the personal inf/ notif and profile settings */}
-          {user?.role}
-          <br />
+      <Box sx={{ 
+        p: 3,
+        bgcolor: 'linear-gradient(135deg, #75347810 0%, #5c2f7610 100%)',
+        borderRadius: '0 20px 20px 0',
+      }}>
+        <Typography variant="subtitle2" fontWeight={600} color="#364e74">
+          {user?.role?.toUpperCase()}
+        </Typography>
+        <Typography variant="body1" fontWeight={500} color="text.secondary">
           {user?.first_name} {user?.last_name}
         </Typography>
       </Box>
 
-      <Divider />
+      <Divider sx={{ borderColor: '#364e7433' }} />
 
       {/* 🔹 NAVIGATION */}
-      <Box sx={{ flexGrow: 1 }}>
-        <List>
+      <Box sx={{ flexGrow: 1, px: 1 }}>
+        <List sx={{
+          '& .MuiListItemButton-root': {
+            borderRadius: 2,
+            mx: 0.5,
+            my: 0.25,
+            transition: 'all 0.2s ease',
+            '&:hover': {
+              bgcolor: '#f8fafc',
+              transform: 'translateX(4px)',
+            },
+            '&.Mui-selected': {
+              bgcolor: '#75347812',
+              color: '#753478',
+              '& .MuiListItemIcon-root': {
+                color: '#753478 !important',
+              }
+            }
+          }
+        }}>
           {menu.map((item, index) => {
             const Icon = item.icon;
 
             let isActive = false;
             if (item.path === "/admin") {
               isActive = location.pathname === "/admin";
-              console.log(user);
             } else {
               isActive = location.pathname.startsWith(item.path);
             }
@@ -64,7 +86,7 @@ export default function Sidebar({ menu, mobileOpen, onClose }) {
                   }}
                 >
                   <ListItemIcon>
-                    <Icon color={isActive ? "primary" : "inherit"} />
+                    <Icon color={isActive ? "#753478" : "inherit"} />
                   </ListItemIcon>
                   <ListItemText primary={item.label} />
                 </ListItemButton>
@@ -76,7 +98,7 @@ export default function Sidebar({ menu, mobileOpen, onClose }) {
 
       {/* 🔻 LOGOUT */}
       <Box sx={{ p: 2 }}>
-        <Divider sx={{ mb: 1 }} />
+        <Divider sx={{ mb: 1, borderColor: '#e5e7eb' }} />
         <List>
           <ListItem disablePadding>
             <ListItemButton
@@ -84,7 +106,10 @@ export default function Sidebar({ menu, mobileOpen, onClose }) {
                 logout();
                 navigate("/login");
               }}
-              sx={{ color: "red" }}
+              sx={{ 
+                color: "#ef4444",
+                '&:hover': { bgcolor: "#fef2f2" }
+              }}
             >
               <ListItemText primary="Logout" />
             </ListItemButton>
@@ -103,7 +128,11 @@ export default function Sidebar({ menu, mobileOpen, onClose }) {
         onClose={onClose}
         sx={{
           display: { xs: "block", sm: "none" },
-          "& .MuiDrawer-paper": { width: drawerWidth },
+          '& .MuiDrawer-paper': { 
+            // zIndex: (theme) => theme.zIndex.appBar - 1,
+            boxShadow: (theme) => theme.shadows[6],
+            borderRadius: 0,
+          },
         }}
       >
         {drawerContent}
@@ -114,7 +143,11 @@ export default function Sidebar({ menu, mobileOpen, onClose }) {
         variant="permanent"
         sx={{
           display: { xs: "none", sm: "block" },
-          "& .MuiDrawer-paper": {
+          '& .MuiDrawer-paper': {
+            // zIndex: (theme) => theme.zIndex.appBar - 1,
+            boxShadow: (theme) => theme.shadows[1],
+            borderRight: '1px solid #364e741f',
+            borderRadius: '0 20px 20px 0',
             width: drawerWidth,
           },
         }}
